@@ -1,45 +1,60 @@
-import React, { useState } from 'react';
+import React, { 
+  useState,
+  createContext,
+  useContext,
+} from 'react';
 
-// class App extends React.Component {  
-//   constructor(props) {
-//     super(props);
-//     this.state = { count: 0 };
-//     this.handleClick = this.handleClick.bind(this);
-//   }
+const Context = createContext(null);
 
-//   handleClick = () => {
-//     this.setState({ count: this.state.count + 1 })
-//   }
+const Provider = ({ children }) => {
+  const [globalState, setGlobalState] = useState(0);
 
-//   render() {
-//     return (
-//       <div>
-//         <h1>Class Component</h1>
-//         <p>You clicked {this.state.count} times</p>
-//         <button onClick={this.handleClick}>
-//           Click me
-//         </button>
-//       </div>
-//     )
-//   }
-// }
+  return (
+    <Context.Provider value={{ globalState, setGlobalState }}>
+      {children}
+    </Context.Provider>
+  )
+}
 
-const App = () => {  
-  const [count, setCount] = useState(0);
+const useGlobalState = () => useContext(Context);
+
+const Counter = () => {  
+  const { globalState, setGlobalState } = useGlobalState();
 
   const handleClick = () => {
-    setCount((actualState) => actualState + 1);
+    setGlobalState((actualState) => actualState + 1);
   }
 
   return (
-    <div>
-      <h1>Functional Component</h1>
-      <p>You clicked {count} times</p>
+    <div style={{ margin: 10 }}>
+      <h1>Counter</h1>
+      <p>You clicked {globalState} times</p>
       <button onClick={handleClick}>
         Click me
       </button>
     </div>
   );
 }
+
+const Led = () => {
+  const { globalState } = useGlobalState();
+
+  return (
+    <div style={{
+      width: 50,
+      height: 50,
+      backgroundColor: globalState < 5 ? 'red' : 'green',
+      borderRadius: '50%',
+      margin: 10
+    }} />
+  )
+}
+
+const App = () => (
+  <Provider>
+    <Counter/>
+    <Led />
+  </Provider>
+)
 
 export default App;
