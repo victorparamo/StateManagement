@@ -3,20 +3,21 @@ import React from 'react';
 class App extends React.Component {  
   constructor(props) {
     super(props);
-    this.state = { clicks: 0 };
+    this.state = { count: 0 };
     this.handleClick = this.handleClick.bind(this);
   }
-  
+
   handleClick = () => {
-    this.setState({ clicks: this.state.clicks + 1 })
+    this.setState({ count: this.state.count + 1 })
   }
-  
-  render () {
+
+  render() {
     return (
       <div>
-        {this.state.clicks}
+        <h1>Class Component</h1>
+        <p>You clicked {this.state.count} times</p>
         <button onClick={this.handleClick}>
-          Press me
+          Click me
         </button>
       </div>
     )
