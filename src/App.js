@@ -1,17 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const App = () => {  
-  const [clicks, setClicks] = React.useState(0);
-  
-  const handleClick = () => {
-    setClicks((actualState) => actualState + 1);
-  }
-  
+  const [count, setCount] = useState(0);
+
   return (
     <div>
-      {clicks}
-      <button onClick={handleClick}>
-        Press me
+      <h1>Functional Component</h1>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
       </button>
     </div>
   );
