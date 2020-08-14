@@ -1,26 +1,20 @@
 import React from 'react';
 
-class App extends React.Component {  
-  constructor(props) {
-    super(props);
-    this.state = { clicks: 0 };
-    this.handleClick = this.handleClick.bind(this);
+const App = () => {  
+  const [clicks, setClicks] = React.useState(0);
+  
+  const handleClick = () => {
+    setClicks((actualState) => actualState + 1);
   }
   
-  handleClick = () => {
-    this.setState({ clicks: this.state.clicks + 1 })
-  }
-  
-  render () {
-    return (
-      <div>
-        {this.state.clicks}
-        <button onClick={this.handleClick}>
-          Press me
-        </button>
-      </div>
-    )
-  }
+  return (
+    <div>
+      {clicks}
+      <button onClick={handleClick}>
+        Press me
+      </button>
+    </div>
+  );
 }
 
 export default App;
