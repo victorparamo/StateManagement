@@ -1,25 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-function FunctionalCounter() {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    setTimeout(() => {
-      console.log(`[Functional] You clicked ${count} times`);
-    }, 3000);
-  });
-
-  return (
-    <div>
-      <h1>Functional Component</h1>
-      <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)}>
-        Click me
-      </button>
-    </div>
-  );
-}
-
 class ClassCounter extends React.Component {
 
   constructor(props) {
@@ -50,6 +30,26 @@ class ClassCounter extends React.Component {
     )
   }
 
+}
+
+function FunctionalCounter() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    setTimeout(() => {
+      console.log(`[Functional] You clicked ${count} times`);
+    }, 3000);
+  });
+
+  return (
+    <div>
+      <h1>Functional Component</h1>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
 }
 
 const App = () => {    
