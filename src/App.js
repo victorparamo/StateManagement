@@ -70,8 +70,6 @@ function reducer(state, { type, payload }) {
   }
 }
 
-const Context = createContext(null);
-
 const useAuth = () => {
   const [auth, setAuth] = useState();
 
@@ -138,6 +136,8 @@ const Auth = () => {
     <button style={{ margin: 10 }} onClick={login}>Login</button>
   );
 }
+
+const Context = createContext(null);
 
 const Provider = ({ children }) => {
   const [globalState, dispatch] = useReducer(reducer, initialState);
